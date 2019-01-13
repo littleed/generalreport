@@ -1,0 +1,34 @@
+
+User puts in request for basic fields, year stage, student currency, aspects.
+Generics are compile-time only. Stop trying to use them at runtime to auto create cells of types.
+
+From WS, we are probably getting back pieces of student data with a field enum, and value.
+Do we need to know about what field it is? More important to know the type etc?
+
+
+CHECK FILTERS. See if there's a way to build the filters based on the column identifier 
+so we don't need to piss about with these Cell Objects!
+
+What's the benefit of having cell objects? Cells are how the data is stored in the model. 
+Provides an easy way to add and remove from it while controlling core properties. 
+These core properties can include:
+*Comparison
+*Grouping
+*Holding in a structure that can have columns easily added/removed from
+
+Splitting atrtibutes up by data type means that we can easily assign them to the correct type, and render them correctly,
+without having to constantly cast. Constantly casting puts as at a big risk from program error as we have to rely on 
+checking the value's type before doing anything.
+So a have a bunch of different fields in different datatypes, tied together by the field and their identifier. (Identifier is either Student, StudentAspect, or later on possibly StudentClass)
+
+So param requests need validated so that they don't contain guff. Student currency can be expensive to detemine, will it definiately be needed 90% of the time.
+
+Cells can be of student type, student organiser type, or student meeting type.
+Cells can be strings, dates, booleans, etc. Contains all the data required to 
+render, group, sort, etc.
+ 
+How to link student organiser type with student meeting type? This is something not address
+in the requirements because there is no student meeting type, but this is likely to be
+a missed requirement.
+How do we calculated something simple, like the number of rows, if the data model is split
+between student, aspect, meeting.
